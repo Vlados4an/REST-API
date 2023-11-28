@@ -10,6 +10,8 @@ import ru.erma.restprojectup.dto.MeasurementAddDTO;
 import ru.erma.restprojectup.dto.MeasurementDTO;
 import ru.erma.restprojectup.dto.MeasurementResponse;
 import ru.erma.restprojectup.services.MeasurementService;
+
+
 import java.util.Map;
 
 
@@ -37,9 +39,9 @@ public class MeasurementController {
 
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> createMeasurement(@RequestBody @Valid MeasurementAddDTO measurementDTO,
-                                             BindingResult bindingResult){
+                                                        BindingResult bindingResult){
 
         measurementService.saveMeasurement(measurementDTO,bindingResult);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

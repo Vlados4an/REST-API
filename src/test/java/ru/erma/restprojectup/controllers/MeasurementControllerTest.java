@@ -15,7 +15,6 @@ import ru.erma.restprojectup.models.Measurement;
 import ru.erma.restprojectup.models.Sensor;
 import ru.erma.restprojectup.services.MeasurementService;
 import ru.erma.restprojectup.services.SensorService;
-import ru.erma.restprojectup.util.MeasurementNotFoundException;
 
 import java.util.Collections;
 
@@ -75,7 +74,7 @@ class MeasurementControllerTest {
     }
     @Test
     void getMeasurementReturnsNotFoundWhenNotExists() throws Exception {
-        when(measurementService.findOneMeasurement(1)).thenThrow(new MeasurementNotFoundException());
+        when(measurementService.findOneMeasurement(1)).thenThrow(new SensorNotFoundException());
         mockMvc.perform(get("/measurements/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
