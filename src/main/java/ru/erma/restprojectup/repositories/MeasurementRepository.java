@@ -7,6 +7,6 @@ import ru.erma.restprojectup.models.Measurement;
 
 @Repository
 public interface MeasurementRepository extends JpaRepository<Measurement,Integer> {
-    Long countByRaining(boolean raining);
+    Long countByRainingTrue();
 
 }
