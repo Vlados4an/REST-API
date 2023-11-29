@@ -47,12 +47,9 @@ public class MeasurementService {
     }
 
     @Transactional(readOnly = false)
-    public void saveMeasurement(MeasurementAddDTO measurementDTO, BindingResult bindingResult) {
+    public void saveMeasurement(MeasurementAddDTO measurementDTO) {
         Measurement measurementToAdd = modelMapper
                 .measurementAddDTOToMeasurement(measurementDTO);
-
-        if (bindingResult.hasErrors())
-            returnErrorsToClient(bindingResult);
 
         enrichMeasurement(measurementToAdd);
         measurementRepository.save(measurementToAdd);

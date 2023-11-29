@@ -40,8 +40,11 @@ public class MeasurementController {
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> createMeasurement(@RequestBody @Valid MeasurementAddDTO measurementDTO,
                                                         BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        measurementService.saveMeasurement(measurementDTO,bindingResult);
+        measurementService.saveMeasurement(measurementDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

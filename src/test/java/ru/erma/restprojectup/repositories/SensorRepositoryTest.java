@@ -2,12 +2,8 @@ package ru.erma.restprojectup.repositories;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import ru.erma.restprojectup.models.Sensor;
-import ru.erma.restprojectup.repositories.SensorRepository;
 
 import java.util.Optional;
 
@@ -21,7 +17,7 @@ public class SensorRepositoryTest {
     private SensorRepository sensorRepository;
 
     @Test
-    public void whenFindByName_thenReturnSensor() {
+    public void whenFindByName_givenSensorExists_thenReturnSensor() {
         // given
         Sensor givenSensor = new Sensor();
         givenSensor.setName("Test Sensor");
@@ -37,7 +33,7 @@ public class SensorRepositoryTest {
     }
 
     @Test
-    public void whenFindByName_thenReturnEmpty() {
+    public void whenFindByName_givenSensorDoesNotExist_thenReturnEmpty() {
         // given
         String sensorName = "Nonexistent Sensor";
 

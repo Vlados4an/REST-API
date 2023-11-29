@@ -30,26 +30,36 @@ public class MeasurementRepositoryTest {
         entityManager.flush();
     }
     @Test
-    public void whenCountByRaining_thenReturnCorrectCount() {
-        // given
-        persistMeasurement(true);
-        persistMeasurement(true);
-        persistMeasurement(false);
+    public void whenCountByRaining_givenNoMeasurements_thenReturnZero() {
         // when
-        Long count = measurementRepository.countByRaining(true);
+        Long count = measurementRepository.countByRainingTrue();
         // then
-        assertThat(count).isEqualTo(2L);
+        assertThat(count).isEqualTo(0L);
     }
 
     @Test
-    public void whenCountByRaining_thenReturnZero() {
+    public void whenCountByRaining_givenAllMeasurementsAreRaining_thenReturnAllMeasurements() {
         // given
+        persistMeasurement(true);
+        persistMeasurement(true);
+        persistMeasurement(true);
+        // when
+        Long count = measurementRepository.countByRainingTrue();
+        // then
+        assertThat(count).isEqualTo(3L);
+    }
+
+    @Test
+    public void whenCountByRaining_givenSomeMeasurementsAreRaining_thenReturnRainingMeasurementsCount() {
+        // given
+        persistMeasurement(true);
         persistMeasurement(false);
+        persistMeasurement(true);
         persistMeasurement(false);
         // when
-        Long count = measurementRepository.countByRaining(true);
+        Long count = measurementRepository.countByRainingTrue();
         // then
-        assertThat(count).isEqualTo(0L);
+        assertThat(count).isEqualTo(2L);
     }
     private void persistMeasurement(boolean isRaining){
         Measurement measurement = new Measurement();
