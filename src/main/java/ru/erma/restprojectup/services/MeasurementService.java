@@ -3,7 +3,6 @@ package ru.erma.restprojectup.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import ru.erma.restprojectup.dto.MeasurementAddDTO;
 import ru.erma.restprojectup.dto.MeasurementDTO;
 import ru.erma.restprojectup.maper.ModelMapper;
@@ -15,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static ru.erma.restprojectup.util.ErrorUtils.returnErrorsToClient;
 
 
 @Service
