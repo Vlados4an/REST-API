@@ -32,11 +32,6 @@ public class SensorService {
                 });
 
         Sensor sensorToAdd = modelMapper.sensorDTOToSensor(sensorDTO);
-
-        if(bindingResult.hasErrors()){
-            returnErrorsToClient(bindingResult);
-        }
-
         sensorRepository.save(sensorToAdd);
     }
 

@@ -14,6 +14,8 @@ import ru.erma.restprojectup.services.MeasurementService;
 
 import java.util.Map;
 
+import static ru.erma.restprojectup.util.ErrorUtils.returnErrorsToClient;
+
 
 @RestController
 @RequestMapping("/measurements")
@@ -41,7 +43,7 @@ public class MeasurementController {
     public ResponseEntity<HttpStatus> createMeasurement(@RequestBody @Valid MeasurementAddDTO measurementDTO,
                                                         BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            returnErrorsToClient(bindingResult);
         }
 
         measurementService.saveMeasurement(measurementDTO);
